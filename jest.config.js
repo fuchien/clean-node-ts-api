@@ -4,7 +4,7 @@
 module.exports = {
   roots: ['<rootDir>/src'],
   // collectCoverage: ['<rootDir>/src/**/*.ts'],
-  collectCoverage: true,
+  // collectCoverage: false,
   coverageDirectory: 'coverage',
   testEnvironment: 'node',
   transform: {
