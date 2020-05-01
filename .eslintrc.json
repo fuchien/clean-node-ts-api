@@ -6,6 +6,7 @@
     // "parser": "@typescript-eslint/parser",
     "plugins": ["@typescript-eslint"],
     "rules": {
-      "@typescript-eslint/strict-boolean-expressions": "off"
+      "@typescript-eslint/strict-boolean-expressions": "off",
+      "@typescript-eslint/return-await": "off"
     }
   }
