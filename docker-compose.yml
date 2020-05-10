@@ -1,6 +1,12 @@
-version: '3'
+version: '2'
 
 services:
+  node:
+    build: .
+    depends_on:
+      - mongo
+    ports:
+      - "5050:5050"
   mongo:
     image: mongo
     ports:
