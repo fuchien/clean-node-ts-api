@@ -1,11 +1,12 @@
-FROM node:carbon
+FROM node:12
 # Create app directory
-WORKDIR /usr/src/app
+WORKDIR /usr/src/clean-node-api
 # Install app dependencies
 COPY package*.json ./
-RUN npm install
+RUN npm install --only=prod
+COPY ./dist ./dist
 # Copy app source code
-COPY . .
+
 #Expose port and start application
-EXPOSE 8080
+EXPOSE 5000
 CMD [ "npm", "start" ]
