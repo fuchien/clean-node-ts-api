@@ -1,13 +1,24 @@
-version: '2'
+version: "3"
 
 services:
-  node:
-    build: .
-    depends_on:
-      - mongo
-    ports:
-      - "5050:5050"
   mongo:
-    image: mongo
+    container_name: mongo-container
+    image: mongo:3
+    restart: always
+    volumes:
+      - ./data:/daata/db
     ports:
       - "27017:27017"
+
+  api:
+    container_name: api-container
+    build: .
+    restart: always
+    image: clean-node-api
+    links:
+      - mongo
+    command: npm start
+    volumes:
+      - ./dist:/usr/src/clean-node-api/dist
+    ports:
+      - "5000:5000"
