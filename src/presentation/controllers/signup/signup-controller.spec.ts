@@ -99,7 +99,7 @@ describe('SignUp Controller', () => {
     const { sut } = makeSut() // system under test - class/controller... test instance
     const httpRequest = makeFakeRequest()
     const httpResponse = await sut.handle(httpRequest)
-    expect(httpResponse).toEqual(ok(makeFakeAccount()))
+    expect(httpResponse).toEqual(ok({ accessToken: 'any_token' }))
   })
   test('Should return validation with correct value', async () => {
     const { sut, validationStub } = makeSut()
