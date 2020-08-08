@@ -1,11 +1,9 @@
 import { AddSurveyRepository } from '@/data/protocols/db/survey/add-survey-repository'
 import { LoadSurveyByIdRepository } from '@/data/protocols/db/survey/load-survey-by-id-repository'
 import { LoadSurveysRepository } from '@/data/protocols/db/survey/load-surveys-repository'
-import { SaveSurveyResultRepository } from '@/data/protocols/db/survey-result/save-survey-result-repository'
 import { AddSurveyParams } from '../usecases/survey/add-survey/db-add-survey-protocols'
 import { SurveyModel } from '../usecases/survey/load-surveys/db-load-surveys-protocols'
-import { mockSurveyModel, mockSurveyModels, mockSurveyResultModel } from '@/domain/test'
-import { SurveyResultModel, SaveSurveyResultParams } from '../usecases/survey-result/save-survey-result/db-save-survey-result-protocols'
+import { mockSurveyModel, mockSurveyModels } from '@/domain/test'
 
 export const mockAddSurveyRepository = (): AddSurveyRepository => {
   class AddSurveyRepositoryStub implements AddSurveyRepository {
@@ -32,13 +30,4 @@ export const mockLoadSurveysRepository = (): LoadSurveysRepository => {
     }
   }
   return new LoadSurveysRepositoryStub()
-}
-
-export const makeSaveSurveyResultRepository = (): SaveSurveyResultRepository => {
-  class SaveSurveyResultRepositoryStub implements SaveSurveyResultRepository {
-    async save (data: SaveSurveyResultParams): Promise<SurveyResultModel> {
-      return Promise.resolve(mockSurveyResultModel())
-    }
-  }
-  return new SaveSurveyResultRepositoryStub()
 }
