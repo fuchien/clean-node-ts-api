@@ -7,8 +7,9 @@ import { throwError, mockSurveyResultModel } from '@/domain/test'
 import MockDate from 'mockdate'
 
 const mockRequest = (): HttpRequest => ({
+  accountId: 'any_account_id',
   params: {
-    surveyId: 'any_id'
+    surveyId: 'any_survey_id'
   }
 })
 
@@ -40,7 +41,7 @@ describe('LoadSurveyResult Controller', () => {
     const { sut, loadSurveyByIdStub } = makeSut()
     const loadByIdSpy = jest.spyOn(loadSurveyByIdStub, 'loadById')
     await sut.handle(mockRequest())
-    expect(loadByIdSpy).toHaveBeenCalledWith('any_id')
+    expect(loadByIdSpy).toHaveBeenCalledWith('any_survey_id')
   })
   test('Shoul return 403 if LoadSurveyById returns null', async () => {
     const { sut, loadSurveyByIdStub } = makeSut()
@@ -54,11 +55,11 @@ describe('LoadSurveyResult Controller', () => {
     const httpResponse = await sut.handle(mockRequest())
     expect(httpResponse).toEqual(serverError(new Error()))
   })
-  test('Shoul call LoadSurveyResult with correct value', async () => {
+  test('Shoul call LoadSurveyResult with correct values', async () => {
     const { sut, loadSurveyResultStub } = makeSut()
     const loadSpy = jest.spyOn(loadSurveyResultStub, 'load')
     await sut.handle(mockRequest())
-    expect(loadSpy).toHaveBeenCalledWith('any_id')
+    expect(loadSpy).toHaveBeenCalledWith('any_survey_id', 'any_account_id')
   })
   test('Should returns 500 if LoadSurveyResult throws', async () => {
     const { sut, loadSurveyResultStub } = makeSut()
